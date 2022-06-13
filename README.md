@@ -12,7 +12,7 @@ Create a virtual environment and install the required packages
 conda env create --file env.yml
 source activate uacnn
 ```
-#### Environmanet from scratch
+#### Environment from scratch
 ```bash
 conda create -n uacnn python=3.7 openslide pytorch torchvision torchaudio cudatoolkit=11.4 -c pytorch -c conda-forge
 conda activate uacnn
