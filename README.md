@@ -1,6 +1,6 @@
 # Uncertainty Aware Sampling Framework (UASF)
 
-Sample informative tiles from WSIs taken from TCGA with UASF. The model takes as inputs weak-labeled tiles, where tiles are given their WSI label. The model adopted Monte-carlo dropout that are used for variational inference to generate not only a prediction probability but also an uncertainty measure.  
+Sample informative tiles from WSIs taken from TCGA with UASF. The model takes as inputs weak-labeled tiles, where tiles are given their WSI label. The model adopted Monte-Carlo dropout that are used for variational inference to generate not only a prediction probability but also an uncertainty measure.  
 
 ## Installation
 Create a virtual environment and install the required packages
