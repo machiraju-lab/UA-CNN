@@ -20,7 +20,7 @@ conda activate uacnn
 #### Required Packages
 ```bash
 #HistomicsTK
-pip install histomicstk --find-links https://girder.github.io/large_image_wheels ```
+pip install histomicstk --find-links https://girder.github.io/large_image_wheels
 #Additional packages 
 pip install tqdm rasterio large-image-source-openslide tensorboard pytorch-lightning
 ```
