@@ -1,0 +1,44 @@
+Done tiling:  data/slides/TCGA-CS-6290-01Z-00-DX1.34c1d579-aeba-4aa2-b0c5-0b04fb16d7a4.svs
+Image native magnification: 40
+Total tile: 28815
+Pre-Otsu tiles: 6871
+Done tiling:  data/slides/TCGA-CS-5390-01Z-00-DX1.3C241E8A-D2E7-4C8D-ABDF-60391D8A32AD.svs
+Image native magnification: 40
+Total tile: 64538
+Pre-Otsu tiles: 10570
+Done tiling:  data/slides/TCGA-06-0125-01Z-00-DX1.8e0915b2-8dc3-4753-8062-05643835672b.svs
+Image native magnification: 20
+Total tile: 29412
+Pre-Otsu tiles: 730
+Done tiling:  data/slides/TCGA-CS-4942-01Z-00-DX1.67f7928e-e1d9-473b-a317-7c6b4ba7433f.svs
+Image native magnification: 40
+Total tile: 19584
+Pre-Otsu tiles: 5445
+Done tiling:  data/slides/TCGA-14-1034-01Z-00-DX1.3f594769-d805-4ecf-ab88-458c7d712299.svs
+Image native magnification: 20
+Total tile: 32880
+Pre-Otsu tiles: 5674
+Done tiling:  data/slides/TCGA-DU-7298-01Z-00-DX1.1A1DDD06-53F9-4641-AC10-B6F78349DC66.svs
+Image native magnification: 40
+Total tile: 37932
+Pre-Otsu tiles: 5659
+Done tiling:  data/slides/TCGA-06-0882-01Z-00-DX1.90e658c5-a34f-435e-972f-938ea89d0a6b.svs
+Image native magnification: 20
+Total tile: 23393
+Pre-Otsu tiles: 1572
+Done tiling:  data/slides/TCGA-14-1034-01Z-00-DX2.08f09fde-3f37-4262-8880-9d924a89501a.svs
+Image native magnification: 20
+Total tile: 22350
+Pre-Otsu tiles: 3055
+Done tiling:  data/slides/TCGA-06-0125-01Z-00-DX2.4f9cef92-2bdb-480d-8704-94289f8b70fb.svs
+Image native magnification: 20
+Total tile: 49410
+Pre-Otsu tiles: 3495
+Done tiling:  data/slides/TCGA-06-0882-01Z-00-DX2.7ad706e3-002e-4e29-88a9-18953ba422bf.svs
+Image native magnification: 20
+Total tile: 11990
+Pre-Otsu tiles: 383
+Done tiling:  data/slides/TCGA-02-0047-01Z-00-DX1.4755D138-5842-4159-848C-4248D6D53DE0.svs
+Image native magnification: 40
+Total tile: 99127
+Pre-Otsu tiles: 51929

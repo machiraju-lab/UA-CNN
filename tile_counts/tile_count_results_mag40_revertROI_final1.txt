@@ -1,0 +1,55 @@
+{'levels': 9, 'sizeX': 65228, 'sizeY': 28836, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 40.0, 'mm_x': 0.000252, 'mm_y': 0.000252}
+Done tiling:  data/slides/TCGA-CS-6290-01Z-00-DX1.34c1d579-aeba-4aa2-b0c5-0b04fb16d7a4.svs
+Image magnification: 40
+Total tile: 28448
+Pre-Otsu tiles: 7974
+{'levels': 11, 'sizeX': 135253, 'sizeY': 31188, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 40.0, 'mm_x': 0.000252, 'mm_y': 0.000252}
+Done tiling:  data/slides/TCGA-CS-5390-01Z-00-DX1.3C241E8A-D2E7-4C8D-ABDF-60391D8A32AD.svs
+Image magnification: 40
+Total tile: 63888
+Pre-Otsu tiles: 11608
+{'levels': 10, 'sizeX': 65919, 'sizeY': 29127, 'tileWidth': 240, 'tileHeight': 240, 'magnification': 20.0, 'mm_x': 0.0005001, 'mm_y': 0.0005001}
+Done tiling:  data/slides/TCGA-06-0125-01Z-00-DX1.8e0915b2-8dc3-4753-8062-05643835672b.svs
+Image magnification: 20
+Total tile: 116678
+Pre-Otsu tiles: 5000
+{'levels': 9, 'sizeX': 48921, 'sizeY': 25915, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 40.0, 'mm_x': 0.000252, 'mm_y': 0.000252}
+Done tiling:  data/slides/TCGA-CS-4942-01Z-00-DX1.67f7928e-e1d9-473b-a317-7c6b4ba7433f.svs
+Image magnification: 40
+Total tile: 19291
+Pre-Otsu tiles: 6052
+{'levels': 10, 'sizeX': 70003, 'sizeY': 30551, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 20.0, 'mm_x': 0.0005015, 'mm_y': 0.0005015}
+Done tiling:  data/slides/TCGA-14-1034-01Z-00-DX1.3f594769-d805-4ecf-ab88-458c7d712299.svs
+Image magnification: 20
+Total tile: 129948
+Pre-Otsu tiles: 28349
+{'levels': 10, 'sizeX': 83664, 'sizeY': 29654, 'tileWidth': 240, 'tileHeight': 240, 'magnification': 40.0, 'mm_x': 0.0002525, 'mm_y': 0.0002525}
+Done tiling:  data/slides/TCGA-DU-7298-01Z-00-DX1.1A1DDD06-53F9-4641-AC10-B6F78349DC66.svs
+Image magnification: 40
+Total tile: 37490
+Pre-Otsu tiles: 6197
+{'levels': 9, 'sizeX': 40001, 'sizeY': 37939, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 20.0, 'mm_x': 0.0005015, 'mm_y': 0.0005015}
+Done tiling:  data/slides/TCGA-06-0882-01Z-00-DX1.90e658c5-a34f-435e-972f-938ea89d0a6b.svs
+Image magnification: 20
+Total tile: 92352
+Pre-Otsu tiles: 11821
+{'levels': 9, 'sizeX': 38001, 'sizeY': 38308, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 20.0, 'mm_x': 0.0005015, 'mm_y': 0.0005015}
+Done tiling:  data/slides/TCGA-14-1034-01Z-00-DX2.08f09fde-3f37-4262-8880-9d924a89501a.svs
+Image magnification: 20
+Total tile: 88504
+Pre-Otsu tiles: 4962
+{'levels': 10, 'sizeX': 77905, 'sizeY': 41217, 'tileWidth': 240, 'tileHeight': 240, 'magnification': 20.0, 'mm_x': 0.0005001, 'mm_y': 0.0005001}
+Done tiling:  data/slides/TCGA-06-0125-01Z-00-DX2.4f9cef92-2bdb-480d-8704-94289f8b70fb.svs
+Image magnification: 20
+Total tile: 195776
+Pre-Otsu tiles: 18786
+{'levels': 8, 'sizeX': 28001, 'sizeY': 27773, 'tileWidth': 256, 'tileHeight': 256, 'magnification': 20.0, 'mm_x': 0.0005015, 'mm_y': 0.0005015}
+Done tiling:  data/slides/TCGA-06-0882-01Z-00-DX2.7ad706e3-002e-4e29-88a9-18953ba422bf.svs
+Image magnification: 20
+Total tile: 47088
+Pre-Otsu tiles: 1677
+{'levels': 10, 'sizeX': 87647, 'sizeY': 73939, 'tileWidth': 240, 'tileHeight': 240, 'magnification': 40.0, 'mm_x': 0.00025330000000000003, 'mm_y': 0.00025330000000000003}
+Done tiling:  data/slides/TCGA-02-0047-01Z-00-DX1.4755D138-5842-4159-848C-4248D6D53DE0.svs
+Image magnification: 40
+Total tile: 98496
+Pre-Otsu tiles: 54196

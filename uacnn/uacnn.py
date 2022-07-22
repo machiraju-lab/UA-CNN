@@ -32,6 +32,7 @@ import sys
 file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 
+
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self, df, images_folder, labels, class2index, transform=None):
         self.df = df

@@ -1,88 +1,82 @@
-from PIL import Image, ImageFilter
-from shapely.geometry import Polygon, shape, mapping, asPolygon
+from PIL import Image
+from shapely.geometry import Polygon, shape
 import large_image
-from histomicstk.saliency.tissue_detection import (get_tissue_mask)
-import cv2
+from histomicstk.saliency.tissue_detection import get_tissue_mask
 import numpy as np
-from numpy import array
-import matplotlib.pyplot as plt
 import rasterio.features
-from shapely.geometry import Polygon, shape, GeometryCollection
 
-class DetectTissue():
+import glob
+import gc
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 
-    def get_wsi_mask(self, wsi):
 
-        # First we load WSI
+class DetectTissue:
+    @staticmethod
+    def get_img(wsi, mag):
         ts = large_image.getTileSource(wsi)
-        # get maximum magfnification
-        native_mag = int(ts.getNativeMagnification()['magnification'])
-        # get the thumbnail of the WSI
-        thumbnail_rgb, _ = ts.getRegion(scale=dict(magnification=1),
+        # print(ts.getMetadata())
+        thumbnail_rgb, _ = ts.getRegion(scale=dict(magnification=mag),
                                         format=large_image.tilesource.TILE_FORMAT_NUMPY)
-        thumbnail = thumbnail_rgb[:, :, 0:3]
-        plt.imshow(thumbnail)
+        return thumbnail_rgb[:, :, 0:3]
 
-        # resize factors
-        factors = np.array([native_mag, native_mag])
+    @staticmethod
+    def get_tissue_mask(im, largest, deconvolve):
+        mask_all, mask_lg = get_tissue_mask(im, deconvolve_first=deconvolve, n_thresholding_steps=1,
+                                            sigma=1., min_size=50)
+        if largest: mask_all = mask_lg
+        pil_mask = Image.fromarray(np.uint8(mask_all * 255))
+        return rasterio.features.shapes(np.asarray(pil_mask))
 
-        # Generate the tissue mask based on the thumbnail
-        mask_out, mask = get_tissue_mask(
-            thumbnail, deconvolve_first=False,
-            n_thresholding_steps=1, sigma=0., min_size=1)
-
-        # convert numpy array to PIL
-        pil_mask = Image.fromarray(np.uint8(mask_out * 255))
-
-        # smooth edges to reduce polygon indices
-        smth_mask = pil_mask.filter(ImageFilter.ModeFilter(size=50))
-
-        #convert PIL to numpy array
-        arr_mask = np.asarray(smth_mask)
-
-        #  mask to shapes
-        shp_mask = rasterio.features.shapes(arr_mask)
-
-        poly_mask = []
-        for polygon, value in shp_mask:
+    @staticmethod
+    def get_polygons(shapes):
+        polygons = []
+        for polygon, value in shapes:
             if value > 0:
                 poly = shape(polygon)
-                if poly.geom_type == 'Polygon' and poly.area > 1:
+                if poly.geom_type == 'Polygon' and poly.area > 75.:
                     clean = poly.simplify(1, preserve_topology=False)
-                    #skip if smoothing polygon provides empty list
-                    if clean.is_empty:
+                    if clean.is_empty or clean.geom_type == 'MultiPolygon':
                         continue
                     clean = clean.buffer(0.0)
-                    poly_mask.append(clean.buffer(0.0))
-                    x, y = clean.exterior.xy
-                    plt.plot(x, y, color='red')
-        plt.gca().invert_yaxis()
+                    polygons.append(clean.buffer(0.0))
+        #             Sanity check: does polygon encompass tissue on thumbnail image?
+        #             x, y = clean.exterior.xy
+        #             plt.plot(x, y, color='blue', linewidth=2)
+        # plt.gca().invert_yaxis()
+        # plt.gca().set_aspect('equal', adjustable='box')
+        # plt.show()
+        # plt.close()
+        return polygons
 
-        #resizing
+    @staticmethod
+    def enlarge_polygons(polygons, mag, scale): # , wsi):
         resized_mask = []
-        for ply in poly_mask:
-            ply_arr = array(array(ply.exterior) * factors).astype(int)
-            x, y = asPolygon(ply_arr).exterior.xy
-            plt.plot(x, y, color='red')
-            resized_mask.append({'name': 'tissue', 'color': '#000000', 'polygon': asPolygon(ply_arr)})
-        plt.gca().invert_yaxis()
+        factors = np.array([mag, mag]) * 1/scale
+        for ply in polygons:
+            ply_arr = np.array(np.array(ply.exterior) * factors).astype(int)
+            resized_mask.append({'polygon': Polygon(ply_arr)})
+        #     Sanity check: does enlarged polygon match expected dimensions of user-requested magnification?
+        #     x, y = Polygon(ply_arr).exterior.xy
+        #     plt.plot(x, y, color='red', linewidth=1)
+        # plt.gca().set_aspect('equal', adjustable='box')
+        # plt.gca().invert_yaxis()
+        # plt.show()
+        # plt.close()
         return resized_mask
 
-
-    def has_tissue(self, img, tile_width, tile_height):
-        if (img.shape[0] < int(tile_width) or img.shape[1] < int(tile_height)):
-            return False
-        img_area = int(img.shape[0]) * int(img.shape[0])
-        MAX_WHITE_SIZE = img_area - img_area * 30 / 100
-        # tile is nparray
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        blur = cv2.GaussianBlur(gray, (5, 5), 0)
-        ret3, th3 = cv2.threshold(blur.astype(np.uint8), 200, 255, cv2.THRESH_BINARY)
-        contours, hierarchy = cv2.findContours(th3, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        return self.get_cnt_sum(contours, 2) < MAX_WHITE_SIZE
+    def get_wsi_mask(self, file, mag, scale=0.25, largest=False, deconvolve=False):
+        deconv = ['TCGA-02-0047-01Z-00', 'TCGA-14-1034-01Z-00-DX2', 'TCGA-06-0882-01Z-00']
+        if any(x in file for x in deconv): deconvolve = True
+        im = self.get_img(file, mag=scale)
+        scaled_mask = self.get_tissue_mask(im, largest=largest, deconvolve=deconvolve)
+        poly_mask = self.get_polygons(scaled_mask)
+        return self.enlarge_polygons(poly_mask, mag, scale)  # , wsi)
 
 
-    def get_cnt_sum(self, contours, topn):
-        res = 0
-        cnts = sorted(contours, key=lambda x: cv2.contourArea(x))[-topn:]
-        return sum([cv2.contourArea(cnt) for cnt in cnts])
+if __name__ == '__main__':
+    mask = DetectTissue()
+    path = 'data/slides/TCGA-CS-4942-01Z-00-DX1.67f7928e-e1d9-473b-a317-7c6b4ba7433f.svs'
+    for f in glob.glob(path):
+        mask.get_wsi_mask(f, 20.)
+        gc.collect()

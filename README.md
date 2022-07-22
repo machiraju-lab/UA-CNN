@@ -30,7 +30,7 @@ Note: code was run with python 3.7
 To insure reproducibility of the results, data splits and tiles coordinates are provided in MICCAI_data.gz
 To uncompress it, run
 ```bash
-tar -xzvf MICCAI_data.tar.gz
+tar -xf MICCAI_data.tar.xz
 ```
 ### Download TCGA Slides
 We originally downloaded the whole-slide images from the TCGA data portal https://portal.gdc.cancer.gov/ via the gdc-client tool.
@@ -40,7 +40,7 @@ mkdir data
 cd data
 mkdir slides
 cd slides
-gdc-client download -m gdc_manifest.TCGA_SARC_dx_slides_2022-05-28
+gdc-client download -m gdc_manifest.TCGA_SARC_dx_slides_2022-05-28.txt
 ```
 
 ### Preprocessing WSIs

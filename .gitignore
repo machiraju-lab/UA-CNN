@@ -1,0 +1,9 @@
+# Ignore folders
+/data
+
+# Ignore config
+env.yml
+
+# Ignore files
+*.xml
+
