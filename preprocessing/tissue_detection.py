@@ -69,8 +69,10 @@ class DetectTissue:
         deconv = ['TCGA-02-0047-01Z-00', 'TCGA-14-1034-01Z-00-DX2', 'TCGA-06-0882-01Z-00']
         if any(x in file for x in deconv): deconvolve = True
         im = self.get_img(file, mag=scale)
+        # scaled_mask should return Aline's notation at her specified magnification
         scaled_mask = self.get_tissue_mask(im, largest=largest, deconvolve=deconvolve)
         poly_mask = self.get_polygons(scaled_mask)
+        # enlarge_polygons should return Aline's polygons enlarged to the native magnification of the associated WSI
         return self.enlarge_polygons(poly_mask, mag, scale)  # , wsi)
 
 

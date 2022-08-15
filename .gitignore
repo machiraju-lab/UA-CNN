@@ -1,9 +1,10 @@
 # Ignore folders
-/data
+data/
 
 # Ignore config
 env.yml
 
 # Ignore files
 *.xml
-
+*.idea
+*.svs
